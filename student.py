@@ -432,7 +432,6 @@ class Student:
         self.var_radio1.set()
 
 
-#insta:UK_51@VeBi
 
 
 
