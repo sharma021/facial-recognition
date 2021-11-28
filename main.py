@@ -2,11 +2,12 @@ from tkinter import*
 from tkinter import ttk
 from PIL import Image,ImageTk
 from student import Student
+import os
 
 class Face_Recognition_System:
     def __init__(self,root):
         self.root=root
-        self.root.geometry("1500x790+0+0")
+        self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition System")
 #first image
         img=Image.open(r"F:\projects\ml\college_images\Stanford.jpg")
@@ -76,7 +77,7 @@ class Face_Recognition_System:
         img8=img8.resize((220,220),Image.ANTIALIAS)
         self.photoimg8=ImageTk.PhotoImage(img8)
 
-        b1=Button(bg_img,image=self.photoimg8,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg8,command=self.open_img,cursor="hand2")
         b1.place(x=1000,y=320,width=220,height=220)
 
 #PHOTOS button
@@ -102,6 +103,9 @@ class Face_Recognition_System:
 
         b1=Button(bg_img,image=self.photoimg11,cursor="hand2")
         b1.place(x=100,y=320,width=220,height=220)
+
+    def open_img(self):
+        os.startfile("DATA")
 
         #-------------------------------------------------FUNCTIONS BUTTONS------------------------------------#
     def student_link(self):
