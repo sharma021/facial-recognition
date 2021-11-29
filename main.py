@@ -4,6 +4,7 @@ from PIL import Image,ImageTk
 from student import Student
 import os
 from train import Train
+from face_recognition import Face_Recognition
 
 class Face_Recognition_System:
     def __init__(self,root):
@@ -53,7 +54,7 @@ class Face_Recognition_System:
         img5=img5.resize((220,220),Image.ANTIALIAS)
         self.photoimg5=ImageTk.PhotoImage(img5)
 
-        b1=Button(bg_img,image=self.photoimg5,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg5,cursor="hand2",command=self.face_data)
         b1.place(x=400,y=80,width=220,height=220)
 
 
@@ -74,7 +75,7 @@ class Face_Recognition_System:
         b1.place(x=1000,y=80,width=220,height=220)
 
 #TRAIN MOdel button
-        img8=Image.open(r"F:\projects\ml\college_images\facial_recognition_system_identification_digital_id_security_scanning_thinkstock_858236252_3x3-100740902-large.jpg")
+        img8=Image.open(r"F:\projects\ml\college_images\face_detector1.jpg")
         img8=img8.resize((220,220),Image.ANTIALIAS)
         self.photoimg8=ImageTk.PhotoImage(img8)
 
@@ -119,6 +120,10 @@ class Face_Recognition_System:
         self.new_window=Toplevel(self.root)
         self.app=Train(self.new_window)
 
+#--------FACE RECOGNITION DATA BUTTTON-----------------#
+    def face_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Face_Recognition(self.new_window)
 
 
 
