@@ -3,6 +3,8 @@ from tkinter import ttk
 from PIL import Image,ImageTk
 from tkinter import messagebox
 import mysql.connector
+from time import strftime
+from datetime import datetime
 import cv2
 import os
 import numpy as np
@@ -35,6 +37,23 @@ class Face_Recognition:
         b1_1=Button(f_lbl,text="Face Recognition",cursor="hand2",command=self.face_recog,font=("times new roman",18,"bold"),bg="blue",fg="white")
         b1_1.place(x=350,y=525,width=200,height=40)
 
+#----------------------------------ATTENDANCE----------------------------------------#
+
+    def mark_attendance(self,l,k,i,j):
+        with open("attend.csv","r+",newline="\n") as f:
+            myDataList=f.readlines()
+            name_list=[]
+            for line in myDataList:
+                entry=line.split((" , "))
+                name_list.append(entry[0])
+            if((l not in name_list) and (k not in name_list) and (i not in name_list) and (j not in name_list)):
+                now=datetime.now()
+                d1=now.strftime("%d/%m/%Y")
+                dtString=now.strftime("%H:%M:%S")
+                f.writelines(f"\n{l},{k},{i},{j},{dtString},{d1},Present)
+
+
+
 
 #---------------------------------FACE RECOGNITION-----------------------------------#
     def face_recog(self):
@@ -63,10 +82,16 @@ class Face_Recognition:
                 k=my_cursor.fetchone()
                 k="+".join(k)
 
+                my_cursor.execute("select Student_id from student where Student_id= "+str(id))
+                l=my_cursor.fetchone()
+                l="+".join(l)
+
                 if confidence>77:
+                    cv2.putText(img,f"ID:{l}",(x,y-75),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,255),3)
                     cv2.putText(img,f"Roll:{k}",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,255),3)
                     cv2.putText(img,f"Name:{i}",(x,y-30),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,255),3)
                     cv2.putText(img,f"Department:{j}",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,255),3)
+                    self.mark_attendance(l,k,i,j)
                 else:
                     cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),3)
                     cv2.putText(img,f"Unknown Face",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,255),3)
