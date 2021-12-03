@@ -40,7 +40,22 @@ class Attendance:
         main_frame.place(x=0,y=45,width=1450,height=600)
 
         Left_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Student Details",font=("times new roman",12,"bold"))
-        Left_frame.place(x=10,y=10,width=660,height=500)
+        Left_frame.place(x=10,y=10,width=660,height=430)
+
+        img_left=Image.open(r"F:\projects\ml\college_images\face_detector1.jpg")
+        img_left=img_left.resize((720,130),Image.ANTIALIAS)
+        self.photoimg_left=ImageTk.PhotoImage(img_left)
+
+        f_lbl=Label(Left_frame,image=self.photoimg_left)
+        f_lbl.place(x=5,y=0,width=720,height=130)
+
+        left_inside_frame=Frame(Left_frame,bd=2,relief=RIDGE,bg="white")
+        left_inside_frame.place(x=10,y=135,width=640,height=300)
+
+        RIGHT_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Attendance Details",font=("times new roman",12,"bold"))
+        RIGHT_frame.place(x=680,y=10,width=660,height=430)
+
+
 
 
 if __name__=='__main__':
