@@ -52,8 +52,106 @@ class Attendance:
         left_inside_frame=Frame(Left_frame,bd=2,relief=RIDGE,bg="white")
         left_inside_frame.place(x=10,y=135,width=640,height=300)
 
+        #labeland Entry
+        #attendance ID
+        attendanceId_label=Label(left_inside_frame,relief=RIDGE,text="Student ID", font=("conicsansns 11 bold"),bg="white")
+        attendanceId_label.grid(row=0,column=0,padx=10,pady=5,sticky=W)
+
+        attendanceId_entry=Entry(left_inside_frame,width=20,font=("conicsansns 11 bold"))
+        attendanceId_entry.grid(row=0,column=1,padx=10,pady=5,sticky=W)
+
+        #Roll lABEL
+        Roll_label=Label(left_inside_frame,relief=RIDGE,text="Roll No", font=("conicsansns 11 bold"),bg="white")
+        Roll_label.grid(row=0,column=2,padx=4,pady=8,sticky=W)
+
+        atten_label_entry=Entry(left_inside_frame,width=20,font=("conicsansns 11 bold"))
+        atten_label_entry.grid(row=0,column=3,padx=8,pady=5,sticky=W)
+
+        #Name
+        name_label=Label(left_inside_frame,relief=RIDGE,text="Name", font=("conicsansns 11 bold"),bg="white")
+        name_label.grid(row=1,column=0,padx=10,pady=5,sticky=W)
+
+        attten_name_entry=Entry(left_inside_frame,width=20,font=("conicsansns 11 bold"))
+        attten_name_entry.grid(row=1,column=1,padx=10,pady=5,sticky=W)
+
+        #Date
+        dep_label=Label(left_inside_frame,relief=RIDGE,text="Department", font=("conicsansns 11 bold"),bg="white")
+        dep_label.grid(row=1,column=2,padx=10,pady=5,sticky=W)
+
+        depl_entry=Entry(left_inside_frame,width=20,font=("conicsansns 11 bold"))
+        depl_entry.grid(row=1,column=3,padx=10,pady=5,sticky=W)
+
+        time_label=Label(left_inside_frame,relief=RIDGE,text="Time", font=("conicsansns 11 bold"),bg="white")
+        time_label.grid(row=2,column=0,padx=10,pady=5,sticky=W)
+
+        T_entry=Entry(left_inside_frame,width=20,font=("conicsansns 11 bold"))
+        T_entry.grid(row=2,column=1,padx=10,pady=5,sticky=W)
+
+        #attendance PhotoSampleStatus
+        attendancelabel=Label(left_inside_frame,text="Attendance Status",bg="white",font="comicsansns 11 bold")
+        attendancelabel.grid(row=3,column=0)
+        self.atten_status=ttk.Combobox(left_inside_frame,width=20,font="conicsansns 11 bold", state="readonly")
+        self.atten_status["values"]=("Status","Present","Absent")
+        self.atten_status.grid(row=3,column=1,pady=8)
+        self.atten_status.current(0)
+
+        #buttons frame
+        btn_frame=Frame(left_inside_frame,bd=2,relief=RIDGE,bg="white")
+        btn_frame.place(x=0,y=200,width=650,height=60)
+
+        save_btn=Button(btn_frame,text="Import csv",width=15,font=("times new roman",13,"bold"),bg="blue",fg="white")
+        save_btn.grid(row=0,column=0)
+
+        update_btn=Button(btn_frame,text="Export csv",width=15,font=("times new roman",13,"bold"),bg="blue",fg="white")
+        update_btn.grid(row=0,column=1)
+
+        delete_btn=Button(btn_frame,text="Update",width=15,font=("times new roman",13,"bold"),bg="blue",fg="white")
+        delete_btn.grid(row=0,column=2)
+
+        reset_btn=Button(btn_frame,text="Reset",width=15,font=("times new roman",13,"bold"),bg="blue",fg="white")
+        reset_btn.grid(row=0,column=3)
+
+        #right label frame
         RIGHT_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Attendance Details",font=("times new roman",12,"bold"))
         RIGHT_frame.place(x=680,y=10,width=660,height=430)
+
+        table_frame=Frame(RIGHT_frame,bd=2,relief=RIDGE,bg="white")
+        table_frame.place(x=5,y=5,width=650,height=380)
+
+        #Scroll bar
+        scroll_x=ttk.Scrollbar(table_frame,orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(table_frame,orient=VERTICAL)
+
+        self.AttendanceReportTable=ttk.Treeview(table_frame,column=("id","roll","name","Department","time","date","attendance"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+
+        scroll_x.pack(side=BOTTOM,fill=X)
+        scroll_y.pack(side=RIGHT,fill=Y)
+
+        scroll_x.config(command=self.AttendanceReportTable.xview)
+        scroll_y.config(command=self.AttendanceReportTable.yview)
+
+        self.AttendanceReportTable.heading("id",text="Attendance id")
+        self.AttendanceReportTable.heading("roll",text="Roll No")
+        self.AttendanceReportTable.heading("name",text="Name")
+        self.AttendanceReportTable.heading("Department",text="Department")
+        self.AttendanceReportTable.heading("time",text="Time")
+        self.AttendanceReportTable.heading("date",text="Date")
+        self.AttendanceReportTable.heading("attendance",text="Attendance Status")
+
+        self.AttendanceReportTable["show"]="headings"
+
+        self.AttendanceReportTable.column("id",width=100)
+        self.AttendanceReportTable.column("roll",width=100)
+        self.AttendanceReportTable.column("name",width=100)
+        self.AttendanceReportTable.column("Department",width=100)
+        self.AttendanceReportTable.column("time",width=100)
+        self.AttendanceReportTable.column("date",width=100)
+        self.AttendanceReportTable.column("attendance",width=110)
+
+
+        self.AttendanceReportTable.pack(fill=BOTH,expand=1)
+
+
 
 
 
