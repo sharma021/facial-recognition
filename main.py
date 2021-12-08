@@ -3,10 +3,14 @@ from tkinter import ttk
 from PIL import Image,ImageTk
 from student import Student
 import os
+from time import strftime
+from datetime import datetime
+import tkinter
 from train import Train
 from face_recognition import Face_Recognition
 from attendance import Attendance
 from developer import Developer
+from help import Help
 
 class Face_Recognition_System:
     def __init__(self,root):
@@ -42,6 +46,15 @@ class Face_Recognition_System:
         title_lbl=Label(bg_img,text="FACE RECOGNITION ATTENDANCE SYSTEM!", font=("times new roman",35,"bold"),bg="white", fg="red")
         title_lbl.place(x=0,y=0,width=1530,height=35)
 
+        #TIME------
+        def time():
+            string=strftime('%H:%M:%S %p')
+            lbl.config(text=string)
+            lbl.after(1000,time)
+        lbl=Label(title_lbl,font=("times new roman",15,"bold"),background="white",foreground="red")
+        lbl.place(x=0,y=0,width=110,height=50)
+        time()
+
 #student button
         img4=Image.open(r"F:\projects\ml\college_images\student-portal_1.jpg")
         img4=img4.resize((200,200),Image.ANTIALIAS)
@@ -73,7 +86,7 @@ class Face_Recognition_System:
         img7=img7.resize((220,220),Image.ANTIALIAS)
         self.photoimg7=ImageTk.PhotoImage(img7)
 
-        b1=Button(bg_img,image=self.photoimg7,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg7,command=self.help_data,cursor="hand2")
         b1.place(x=1000,y=80,width=220,height=220)
 
 #TRAIN MOdel button
@@ -105,11 +118,19 @@ class Face_Recognition_System:
         img11=img11.resize((220,220),Image.ANTIALIAS)
         self.photoimg11=ImageTk.PhotoImage(img11)
 
-        b1=Button(bg_img,image=self.photoimg11,cursor="hand2")
+        b1=Button(bg_img,image=self.photoimg11,cursor="hand2",command=self.iExit)
         b1.place(x=100,y=320,width=220,height=220)
 
     def open_img(self):
         os.startfile("DATA")
+
+#Exit BUTTON Working
+    def iExit(self):
+        self.iExit=tkinter.messagebox.askyesno("Face Recognition","Are you sure You want to exit the application?",parent=self.root)
+        if self.iExit>0:
+            self.root.destroy()
+        else:
+            return
 
         #-------------------------------------------------FUNCTIONS BUTTONS------------------------------------#
 #--------STUDENT DATA BUTTTON-----------------#
@@ -136,6 +157,11 @@ class Face_Recognition_System:
     def Developer_data(self):
         self.new_window=Toplevel(self.root)
         self.app=Developer(self.new_window)
+
+#----------HELP BUTTON---------------------#
+    def help_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Help(self.new_window)
 
 
 if __name__=='__main__':
