@@ -56,6 +56,11 @@ class Student:
         title_lbl=Label(bg_img,text="STUDENT MANAGEMENT SYSTEM", font=("arial",30,"bold"),bg="white", fg="dark green",anchor="center")
         title_lbl.place(x=0,y=0,width=1530,height=35)
 
+#BACK BUTTON
+        Back_Button=Button(bg_img,text="Back",command=self.root.destroy,font=("arial",11,"bold"),width=17,bg="white",fg="red")
+        Back_Button.pack(side=LEFT)
+        Back_Button.place(x=0,y=3)
+        
         main_frame=Frame(bg_img,bd=2)
         main_frame.place(x=0,y=45,width=1450,height=800)
 
