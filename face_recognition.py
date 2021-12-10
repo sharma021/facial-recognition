@@ -19,6 +19,12 @@ class Face_Recognition:
         title_lbl=Label(self.root,text="FACE RECOGNITION", font=("times new roman",35,"bold"),bg="white" ,anchor="center", fg="green")
         title_lbl.place(x=0,y=0,width=1530,height=35)
 
+ #BACK BUTTON
+        Back_Button=Button(self.root,text="Back",command=self.root.destroy,font=("arial",11,"bold"),width=17,bg="white",fg="red")
+        Back_Button.pack(side=LEFT)
+        Back_Button.place(x=0,y=20)
+
+
 #Left Image
         img_top=Image.open(r"F:\projects\ml\college_images\face_detector1.jpg")
         img_top=img_top.resize((550,600),Image.ANTIALIAS)
