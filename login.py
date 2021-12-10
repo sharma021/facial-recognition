@@ -80,7 +80,7 @@ class Login_Window:
 
 
         #Forget password Button
-        forgetpassbtn=Button(frame,text="Forget password",font=("times new roman",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
+        forgetpassbtn=Button(frame,text="Forget password",command=self.forget_password_window,font=("times new roman",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
         forgetpassbtn.place(x=20,y=370,width=120)
 
     def register_window(self):
@@ -130,7 +130,28 @@ class Login_Window:
             else:
                 conn.close()
                 self.root2=Toplevel()
-                self.root2.title
+                self.root2.title("Forget Password")
+                self.root2.geometry("340x450+610+170")
+
+                register_lbl=Label(self.root2,text="RESET YOUR PASSWORD!!",font=("times new roman",15,"bold"),fg="darkgreen",bg="white")
+                register_lbl.place(x=0,y=10,relwidth=1)
+
+                security_Q=Label(self.root2,text="Security Question:",font=("times new roman",15,"bold"),bg="white")
+                security_Q.place(x=50,y=80)
+
+                self.combo_security_Q=ttk.Combobox(self.root2,font=("times new roman",15,"bold"),state="readonly")
+                self.combo_security_Q["values"]=("Select your Choice!","Your Birth Place","Any Pet?","Your Favourite Actor")
+                self.combo_security_Q.place(x=50,y=110,width=250)
+                self.combo_security_Q.current(0)
+
+                security_A=Label(self.root2,text="Security Answer?",font=("times new roman",15,"bold"),bg="white",fg="black")
+                security_A.place(x=50,y=150)
+
+                self.txt_security=ttk.Entry(self.root2,font=("times new roman",15))
+                self.txt_security.place(x=50,y=180,width=250)
+
+
+
 
 class Register:
     def __init__(self,root):
