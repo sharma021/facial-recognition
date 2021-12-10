@@ -55,6 +55,10 @@ class Face_Recognition_System:
         lbl.place(x=0,y=0,width=110,height=50)
         time()
 
+#BACK BUTTON
+        Back_Button=Button(bg_img,text="Back",command=self.root.destroy,font=("arial",11,"bold"),width=17,bg="white",fg="red")
+        Back_Button.pack(side=LEFT)
+        Back_Button.place(x=0,y=40)
 #student button
         img4=Image.open(r"F:\projects\ml\college_images\student-portal_1.jpg")
         img4=img4.resize((200,200),Image.ANTIALIAS)
