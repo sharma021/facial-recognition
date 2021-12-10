@@ -15,6 +15,12 @@ class Train:
 
         title_lbl=Label(self.root,text="TRAIN DATASET", font=("times new roman",35,"bold"),bg="white" ,anchor="center", fg="red")
         title_lbl.place(x=0,y=0,width=1530,height=35)
+        
+ #BACK BUTTON
+        Back_Button=Button(self.root,text="Back",command=self.root.destroy,font=("arial",11,"bold"),width=17,bg="white",fg="red")
+        Back_Button.pack(side=LEFT)
+        Back_Button.place(x=0,y=20)
+
 
 #Top Image
         img_top=Image.open(r"F:\projects\ml\college_images\facialrecognition.png")
