@@ -113,6 +113,38 @@ class Login_Window:
                         return
             conn.commit()
             conn.close()
+    #=================================Reset password=======================================#
+
+    def reset_pass(self):
+        if self.combo_security_Q.get()=="Select":
+            messagebox.showerror("Error!","Select Security Question",parent=self.root2)
+        elif self.txt_security.get()=="":
+            messagebox.showerror("Error!","Please first answer the QUESTION",parent=self.root2)
+        elif self.txt_newpass.get()=="":
+            messagebox.showerror("Error","Enter a new password")
+        else:
+            conn=mysql.connector.connect(host="localhost",username="root",password="sql-password",database="userdata")
+            my_cursor=conn.cursor()
+            qury=("select * from register where email=%s and securityQ=%s and securityA=%s")
+            vlue=(self.txtuser.get(),self.combo_security_Q.get(),self.txt_security.get(),)
+            my_cursor.execute(qury,vlue)
+            row=my_cursor.fetchone()
+            if row==None:
+                messagebox.showerror("Error!","Sorry,Wrong answer",parent=self.root2)
+            else:
+                query=("update register set password=%s where email=%s")
+                value=(self.txt_newpass.get(),self.txtuser.get())
+                my_cursor.execute(query,value)
+
+                conn.commit()
+                conn.close()
+                messagebox.showinfo("information","Password updated successfully!",parent=self.root2)
+                self.root2.destroy()
+
+
+
+
+    #=================================Forget window========================================#
     def forget_password_window(self):
         if self.txtuser.get()=="":
             messagebox.showerror("Error!","Please first enter the email address to reset the password")
@@ -149,6 +181,18 @@ class Login_Window:
 
                 self.txt_security=ttk.Entry(self.root2,font=("times new roman",15))
                 self.txt_security.place(x=50,y=180,width=250)
+
+                new_password=Label(self.root2,text="Choose a new password!",font=("times new roman",15,"bold"),bg="white",fg="black")
+                new_password.place(x=50,y=220)
+
+                self.txt_newpass=ttk.Entry(self.root2,font=("times new roman",15))
+                self.txt_newpass.place(x=50,y=250,width=250)
+
+                #Reset button1
+                btn=Button(self.root2,command=self.reset_pass,text="Reset Password",font=("times new roman",15,"bold"),fg="white",bg="green")
+                btn.place(x=100,y=290)
+
+
 
 
 
