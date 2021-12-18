@@ -23,13 +23,13 @@ class Login_Window:
         frame=Frame(self.root,bg="black")
         frame.place(x=520,y=170,width=340,height=450)
 
-        img1=Image.open(r"F:\projects\ml\college_images\di.jpg")
-        img1=img1.resize((100,100),Image.ANTIALIAS)
+        img1=Image.open(r"F:\projects\ml\facial recognition system\file photos\logo1.png")
+        img1=img1.resize((340,100),Image.ANTIALIAS)
         self.photoimage1=ImageTk.PhotoImage(img1)
-        lblimg1=Label(image=self.photoimage1,bg="black",borderwidth=0)
-        lblimg1.place(x=650,y=175,width=100,height=100)
+        lblimg1=Label(frame,image=self.photoimage1,bg="black",borderwidth=0)
+        lblimg1.place(x=0,y=0,width=340,height=100)
 
-        get_str=Label(frame,text="WELCOME STUDENT!",font=("times new roman",15,"bold"),fg="white",bg="black")
+        get_str=Label(frame,text="WELCOME FRIEND",font=("times new roman",15,"bold"),fg="white",bg="black")
         get_str.place(x=95,y=100)
 
         #Label
@@ -45,14 +45,16 @@ class Login_Window:
         self.txtpass=ttk.Entry(frame,font=("times new roman",15,"bold"))
         self.txtpass.place(x=40,y=250,width=270)
 
+
+
         #-------------------Icon Images------------------#
-        img2=Image.open(r"F:\projects\ml\college_images\di.jpg")
+        img2=Image.open(r"F:\projects\ml\facial recognition system\file photos\user.jpg")
         img2=img2.resize((25,25),Image.ANTIALIAS)
         self.photoimage2=ImageTk.PhotoImage(img2)
         lblimg1=Label(image=self.photoimage2,bg="black",borderwidth=0)
         lblimg1.place(x=580,y=323,width=25,height=25)
 
-        img3=Image.open(r"F:\projects\ml\college_images\di.jpg")
+        img3=Image.open(r"F:\projects\ml\facial recognition system\file photos\pass.jpg")
         img3=img3.resize((25,25),Image.ANTIALIAS)
         self.photoimage3=ImageTk.PhotoImage(img3)
         lblimg1=Label(image=self.photoimage3,bg="black",borderwidth=0)
@@ -63,13 +65,13 @@ class Login_Window:
         loginbtn.place(x=120,y=300,width=120,height=35)
 
         #Register Button
-        registerbtn=Button(frame,text="New User Register",command=self.register_window,font=("times new roman",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
-        registerbtn.place(x=20,y=350,width=120)
+        registerbtn=Button(frame,text="New User Register",command=self.register_window,font=("arial black",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
+        registerbtn.place(x=19,y=350,width=140)
 
 
         #Forget password Button
-        forgetpassbtn=Button(frame,text="Forget password",command=self.forget_password_window,font=("times new roman",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
-        forgetpassbtn.place(x=20,y=370,width=120)
+        forgetpassbtn=Button(frame,text="Forget password",command=self.forget_password_window,font=("arial black",10,"bold"),borderwidth=0,relief=RIDGE,fg="white",bg="black",activeforeground="white",activebackground="red")
+        forgetpassbtn.place(x=20,y=375,width=120)
 
     def register_window(self):
         self.new_window=Toplevel(self.root)
@@ -288,11 +290,6 @@ class Register:
         b1=Button(frame,image=self.Photoimage,command=self.register_data,borderwidth=0,cursor="hand2",font=("times new roman",15,"bold"))
         b1.place(x=20,y=415,width=250)
 
-        img2=Image.open(r"F:\projects\ml\college_images\loginpng.png")
-        img2=img2.resize((200,50),Image.ANTIALIAS)
-        self.Photoimage2=ImageTk.PhotoImage(img2)
-        b1=Button(frame,image=self.Photoimage2,borderwidth=0,cursor="hand2",font=("times new roman",15,"bold"))
-        b1.place(x=280,y=415,width=250)
 
 #============================Function Declaration==================================#
     def register_data(self):
